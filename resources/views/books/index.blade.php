@@ -15,21 +15,23 @@ Mostrar lista de libros
         </thead>
         <tbody>
             @foreach ($bookCase as $book)
-            <tr class="">
-                    <td>{{ $book->id}}</td>
-                    <td>{{ $book->front }}</td>
-                    <td>{{ $book->title }}</td>
-                    <td>{{ $book->author }}</td>
-                    <td>{{ $book->pages }}</td>
-                    <td>{{ $book->ISBN }}</td>
-                    <td><form action="{{ url('/books/'.$book->id) }}" method="POST">
-                        @csrf
-                        {{method_field('DELETE')}}
-                        <input type="submit" onclick="return confirmation('Realamente desea eliminar')" value="Eliminar">
-                    </form>
-                </td>
-                </tr>
-                @endforeach
+                    <tr class="">
+                        <td>{{ <?php var_dump($book->id)?> $book->id}}</td>
+                        <td>{{ $book->front }}</td>
+                        <td>{{ $book->title }}</td>
+                        <td>{{ $book->author }}</td>
+                        <td>{{ $book->pages }}</td>
+                        <td>{{ $book->ISBN }}</td>
+
+
+                           <td><form action="/books/{{$book->id}} }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" onclick="return confirmation('Realamente desea eliminar')" value="Eliminar">
+                        </form>
+                    </td>
+                    </tr>
+            @endforeach
 
         </tbody>
     </table>
