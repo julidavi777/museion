@@ -25,6 +25,7 @@ Mostrar lista de libros
 
 
                            <td>
+                            <a href="{{url('/books/'.$book->id .'/edit')}}">Editar</a>
                             <form action="{{url('/books/'.$book->id)}}"  method="POST">
                             @csrf
                             @method('DELETE')

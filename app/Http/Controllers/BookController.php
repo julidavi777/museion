@@ -65,12 +65,12 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $id)
+    public function edit($id)
     {
 
-        $bookCase = Book::find($id);
 
-        return view('books.index', compact('boo$bookCase'))->with('message', 'El curso ha sido editado ');
+
+        return view('books.edit'); 
     }
 
     /**
