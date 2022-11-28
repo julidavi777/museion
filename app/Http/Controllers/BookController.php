@@ -68,9 +68,9 @@ class BookController extends Controller
     public function edit($id)
     {
 
+        $bookCase = Book::findOrFail($id);
 
-
-        return view('books.edit'); 
+        return view('books.edit', compact('bookCase'));
     }
 
     /**
@@ -80,14 +80,11 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $id)
+    public function update(Request $request,$id)
     {
-        $bookCase = Book::find($id);
-        $bookCase->fill(request()->except(['image', '_token', '_method']));
-        if($request->hasFile('image')){
-            $bookCase->image =  request('image')->store('books', 'public') ;
-        }
-        $bookCase->save();
+        $bookCase =request()->except(['_token', '_method']);
+        Book::where('id', '=', $id)->update($bookCase);
+        $book = Book::findOrFail($id);
        return view('books.edit', compact('bookCase') );
     }
 
