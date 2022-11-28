@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
+//allow delete files in storage
+use Illuminate\Support\Facades\Storage;
+
 
 class BookController extends Controller
 {
@@ -44,7 +46,7 @@ class BookController extends Controller
             $bookCase['front']= $request->file('front')->store('uploads', 'public');
         }
         Book::insert($bookCase);
-        return response()->json($bookCase);
+        return redirect('books')->with('msg', 'Libro añadido correctamente');
 
     }
 
@@ -82,9 +84,16 @@ class BookController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $bookCase =request()->except(['_token', '_method']);
-        Book::where('id', '=', $id)->update($bookCase);
-        $book = Book::findOrFail($id);
+        $book =request()->except(['_token', '_method']);
+
+        if($request->hasFile('front')){
+            $bookCase = Book::findOrFail($id);
+            Storage::delete(['public/', $bookCase->front]);
+            $book['front']= $request->file('front')->store('uploads', 'public');
+        }
+
+        Book::where('id', '=', $id)->update($book);
+        $bookCase = Book::findOrFail($id);
        return view('books.edit', compact('bookCase') );
     }
 
@@ -101,7 +110,7 @@ class BookController extends Controller
         if(Storage::delete('public/'. $bookCase->front)){
             Book::destroy($id);
         }
-        return redirect('books')->with('message', 'El curso se ha borrado exitosamente' );
+        return redirect('books')->with('msg', 'El libro se ha borrado exitosamente' );
 
 
     }

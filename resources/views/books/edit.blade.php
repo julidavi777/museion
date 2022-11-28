@@ -1,6 +1,6 @@
-<form action="{{url('/books/'.$bookCase->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{ url('/books/'.$bookCase->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
-    @include('books.form')
+    @include('books.form',['mode'=>'Editar', 'action'=>''])
 </form>
 

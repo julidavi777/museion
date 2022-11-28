@@ -1,10 +1,12 @@
 Mostrar lista de libros
-
+@if(Session::has('msg'))
+{{Session::get('msg')}}
+@endif
+<a href="{{url('books/create')}}">Nuevo Libro</a>
 <div class="table-responsive">
     <table class="table table-primary">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Portada</th>
                 <th scope="col">Título</th>
                 <th scope="col">Autor</th>
@@ -16,8 +18,7 @@ Mostrar lista de libros
         <tbody>
             @foreach ($bookCase as $book)
                     <tr class="">
-                        <td>{{  $book->id}}</td>
-                        <td>{{ $book->front }}</td>
+                        <td><img src="{{ asset('storage'.'/'.$book->front)}}" alt="Portada del libro" width="90"></td>
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->author }}</td>
                         <td>{{ $book->pages }}</td>
