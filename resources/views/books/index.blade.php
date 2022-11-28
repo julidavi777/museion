@@ -1,5 +1,5 @@
 Mostrar lista de libros
-/*
+
 <div class="table-responsive">
     <table class="table table-primary">
         <thead>
@@ -16,7 +16,7 @@ Mostrar lista de libros
         <tbody>
             @foreach ($bookCase as $book)
                     <tr class="">
-                        <td>{{ <?php var_dump($book->id)?> $book->id}}</td>
+                        <td>{{  $book->id}}</td>
                         <td>{{ $book->front }}</td>
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->author }}</td>
@@ -24,7 +24,8 @@ Mostrar lista de libros
                         <td>{{ $book->ISBN }}</td>
 
 
-                           <td><form action="/books/{{$book->id}} }}" method="POST">
+                           <td>
+                            <form action="{{url('/books/'.$book->id)}}"  method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="submit" onclick="return confirmation('Realamente desea eliminar')" value="Eliminar">

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\View;
 
 class BookController extends Controller
 {
@@ -53,9 +54,9 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show(Book $id)
     {
-        //
+
     }
 
     /**
@@ -64,9 +65,12 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit(Book $id)
     {
-        //
+
+        $bookCase = Book::find($id);
+
+        return view('books.index', compact('boo$bookCase'))->with('message', 'El curso ha sido editado ');
     }
 
     /**
@@ -76,9 +80,15 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, Book $id)
     {
-        //
+        $bookCase = Book::find($id);
+        $bookCase->fill(request()->except(['image', '_token', '_method']));
+        if($request->hasFile('image')){
+            $bookCase->image =  request('image')->store('books', 'public') ;
+        }
+        $bookCase->save();
+       return view('books.edit', compact('bookCase') );
     }
 
     /**
@@ -87,9 +97,15 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $id)
+    public function destroy($id)
     {
-        Book::destroy($id);
-        return redirect('book');
+        $bookCase = Book::find($id);
+
+        if(Storage::delete('public/'. $bookCase->front)){
+            Book::destroy($id);
+        }
+        return redirect('books')->with('message', 'El curso se ha borrado exitosamente' );
+
+
     }
 }
