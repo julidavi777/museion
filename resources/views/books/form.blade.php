@@ -1,6 +1,6 @@
 
 
-<div class="container ">
+<div class="container pb-3 ">
     <h1>{{$mode.' '.$action}} libro</h1>
 
 @if(count($errors)>0)
