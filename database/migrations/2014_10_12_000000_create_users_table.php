@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('lastName');
-            $table->enum(['Cédula de ciudadanía','Tarjeta de identidad', 'pasaporte' ]);
+            $table->string('last_name');
+            $table->enum('type_id', ['Cédula de ciudadanía','Tarjeta de identidad', 'pasaporte' ]);
             $table->string('nic');
             $table->date('birth');
             $table->string('address')->nullable();
