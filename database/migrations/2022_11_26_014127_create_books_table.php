@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('pages');
             $table->char('ISBN', 13)->unique();
             $table->string('front');
-            $table->boolean('onStock');
+            $table->boolean('on_stock');
             $table->timestamps();
         });
     }

@@ -92,7 +92,6 @@ class BookController extends Controller
 
         $bookCase = Book::findOrFail($id);
 
-
         return view('books.edit', compact('bookCase'));
     }
 
@@ -108,7 +107,7 @@ class BookController extends Controller
         $formFields =[
             'title' =>'required|string|max:80',
             'author'=>'required|string|max:80',
-            'pages'=>'required|int|min:5|max:1000',
+            'pages'=>'required|int|min:5|max:10000',
             'ISBN'=>'required|string|max:13|min:13',
         ];
 
@@ -117,6 +116,7 @@ class BookController extends Controller
             'author.required'=>'El Autor es requerido, su nombre no debe ser mayor a 80 caracteres',
             'pages.required'=>'El número de paginas son requeridas, debe estar en un rango de 5 y 1000',
             'ISBN.required'=>'El ISBN es requerido, debe tener 13 carácteres',
+            'ISBN.unique'=>'Este ISBN ya se encuentra registrado, por favor ingrese otro',
             'front.required'=>'La portada es requerida, no debe ser superior a 8Mb',
         ];
 
@@ -148,6 +148,9 @@ class BookController extends Controller
     {
         $bookCase = Book::find($id);
 
+        if(!$bookCase->on_stock){
+            return view('books.delete');
+        }
         if(Storage::delete('public/'. $bookCase->front)){
             Book::destroy($id);
         }

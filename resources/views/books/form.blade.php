@@ -31,6 +31,8 @@
             <input type="text" class="form-control" value="{{isset( $bookCase->ISBN)?$bookCase->ISBN:old('ISBN')}}" name="ISBN">
         </div>
 
+
+
         <div class="mb-3">
             <label for="front" class="form-label"></label>
             @if(isset($bookCase->front))
@@ -39,10 +41,15 @@
             <input type="file" class="form-control"  name="front">
         </div>
 
+        <div class="mb-3 visually-hidden">
+        <input type="text" class="form-control" value="true" name="on_stock">
+        </div>
+
         <button type="submit" class="btn btn-primary">{{$mode}} libro</button>
         <a class="btn btn-danger"  href="{{url('/books')}}">Regresar</a>
 
     </div>
     </form>
+
 
 

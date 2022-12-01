@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\BookController;
 Route::get('/', function () {
     return view('auth.login');
 });
+
 
 Route::resource('books', BookController::class)->middleware('auth');
 

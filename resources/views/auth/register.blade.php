@@ -20,7 +20,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        value="{{ __('123456') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                                 <div class="col-md-6">
                                     <input id="last_name" type="text"
                                         class="form-control @error('last_name') is-invalid @enderror" name="last_name"
-                                        value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+                                        value="{{ __('123456') }}" required autocomplete="last_name" autofocus>
 
                                     @error('last_name')
                                         <span class="invalid-feedback" role="alert">
@@ -53,9 +53,9 @@
 
                                 <div class="col-md-6">
                                     <select class="form-select" aria-label="Default select example" name="type_id"
-                                        @error('type_id') is-invalid @enderror" name="type_id" value="{{ old('type_id') }}"
+                                        @error('type_id') is-invalid @enderror" name="type_id" value="{{ __('123456') }}"
                                         required autocomplete="type_id" autofocus>
-                                        <option selected>-- Selecciona uno --</option>
+                                        {{-- <option selected>-- Selecciona uno --</option> --}}
                                         <option value="Cédula de ciudadanía ">Cédula de ciudadanía </option>
                                         <option value="'Tarjeta de identidad">Tarjeta de identidad</option>
                                         <option value="pasaporte">pasaporte</option>
@@ -76,7 +76,7 @@
                                 <div class="col-md-6">
                                     <input id="nic" type="nic"
                                         class="form-control @error('nic') is-invalid @enderror" name="nic"
-                                        value="{{ old('nic') }}" required autocomplete="nic">
+                                        value="{{ __('123456') }}" required autocomplete="nic">
 
                                     @error('nic')
                                         <span class="invalid-feedback" role="alert">
@@ -93,7 +93,7 @@
                                 <div class="col-md-6">
                                     <input id="birth" type="date"
                                         class="form-control @error('birth') is-invalid @enderror" name="birth"
-                                        value="{{ old('birth') }}" required autocomplete="birth">
+                                        value="{{ __('2022-12-01') }}" required autocomplete="birth">
 
                                     @error('birth')
                                         <span class="invalid-feedback" role="alert">
@@ -111,7 +111,7 @@
                                 <div class="col-md-6">
                                     <input id="address" type="text"
                                         class="form-control @error('address') is-invalid @enderror" name="address"
-                                        value="{{ old('address') }}" required autocomplete="address">
+                                        value="{{ __('123456') }}" required autocomplete="address">
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -127,9 +127,9 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Celular:') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="phone" type="date"
+                                    <input id="phone" type="number"
                                         class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                        value="{{ old('phone') }}" required autocomplete="phone">
+                                        value="{{ __('123456') }}" required autocomplete="phone">
 
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
@@ -146,7 +146,7 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
+                                        value="{{ __('123456@isb.com') }}" required autocomplete="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -163,7 +163,7 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+                                        required autocomplete="new-password" value="12345678">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -179,7 +179,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
+                                        name="password_confirmation" value="12345678" required autocomplete="new-password">
                                 </div>
                             </div>
 
