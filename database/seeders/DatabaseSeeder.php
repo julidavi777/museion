@@ -1,7 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\Book;
+use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +15,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Book::create([
+            'id' => 9223,
+            'title' => 'Las mil y una noches',
+            'author' => 'Anónimo',
+            'pages' => 1327,
+            'ISBN' => '9780706411157',
+            'front' => 'uploads/lasmilyunanoche.jpg',
+            'on_stock' => true
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Book::create([
+            'id' => 9224,
+            'title' => '1984',
+            'author' => 'Anónimo',
+            'pages' => 1327,
+            'ISBN' => '9789962904946',
+            'front' => 'uploads/1984.jpg',
+            'on_stock' => true
+        ]);
+
+        Book::create([
+            'id' => 9225,
+            'title' => 'Usted puede sanar su vida',
+            'author' => 'Louise L. Hay',
+            'pages' => 244,
+            'ISBN' => '9788496829015',
+            'front' => 'uploads/ustedpuedesanarsuvida.jpg',
+            'on_stock' => true
+        ]);
+
+
     }
 }

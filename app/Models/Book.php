@@ -13,6 +13,7 @@ class Book extends Model
         'title',
         'author',
         'pages',
-        'ISBN'
+        'ISBN',
+        'on_stock'
     ];
 }

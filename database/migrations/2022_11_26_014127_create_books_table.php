@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('author');
             $table->integer('pages');
-            $table->char('ISBN', 13);
+            $table->char('ISBN', 13)->unique();
             $table->string('front');
+            $table->boolean('on_stock');
             $table->timestamps();
         });
     }
