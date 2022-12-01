@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'author' => 'Anónimo',
             'pages' => 1327,
             'ISBN' => '9780706411157',
-            'front' => 'uploads/lasmilyunanoche.jpg',
+            'front' => 'uploads/lasmilyunanoches.jpg',
             'on_stock' => true
         ]);
 
