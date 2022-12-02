@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 //allow delete files in storage
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 
 class BookController extends Controller
@@ -40,6 +41,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+       $isbn =  DB::table('books')->where('ISBN', '=', $request->ISBN)->get()->count() > 0;
+
         $formFields =[
             'title' =>'required|string|max:80',
             'author'=>'required|string|max:80',
@@ -54,6 +57,7 @@ class BookController extends Controller
             'pages.required'=>'El número de paginas son requeridas, debe estar en un rango de 5 y 1000',
             'ISBN.required'=>'El ISBN es requerido, debe tener 13 carácteres',
             'front.required'=>'La portada es requerida, no debe ser superior a 8Mb',
+            'ISBN.unique' => 'El ISBN no puede estar repetido'
         ];
 
         $this->validate($request,$formFields,$error);
@@ -62,8 +66,12 @@ class BookController extends Controller
         if($request->hasFile('front')){
             $bookCase['front']= $request->file('front')->store('uploads', 'public');
         }
-        Book::insert($bookCase);
-        return redirect('books')->with('msg', 'Libro añadido correctamente');
+        if(!$isbn){
+             Book::insert($bookCase);
+             return redirect('books')->with('msg', 'Libro añadido correctamente');
+            }
+
+            return redirect('books/isbn');
 
     }
 

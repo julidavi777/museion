@@ -21,6 +21,9 @@ Route::get('/', function () {
 });
 
 
+Route::get('/books/isbn', function () {
+    return view('books.isbn');
+});
 Route::resource('books', BookController::class)->middleware('auth');
 
 Auth::routes();

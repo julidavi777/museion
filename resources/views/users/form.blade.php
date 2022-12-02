@@ -14,6 +14,7 @@
             </div>
         @endforeach
     @endif
+   
     {{-- name --}}
     <div class="mb-3">
         <label for="name"form-label">Nombre</label>
