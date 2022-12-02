@@ -9,10 +9,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+        @if (Session::has('alert'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
 
+            <strong> {{ Session::get('alert') }}</strong>.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
-        <div class="table-responsive">
-            <table class="table table-dark table-striped  ">
+<a class="btn btn-success mb-3" href="{{url('/users/create')}}">Añadir usuario</a>
+        <div class="table-responsive rounded ">
+            <table class="table table-dark table-striped ">
                 <thead>
                     <tr>
 
