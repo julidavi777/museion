@@ -70,13 +70,12 @@
                             </div>
                             {{-- nic --}}
                             <div class="row mb-3">
-                                <label for="nic"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Documento:*') }}</label>
+                                <label for="nic"class="col-md-4 col-form-label text-md-end">Documento: </label>
 
                                 <div class="col-md-6">
                                     <input id="nic" type="nic"
                                         class="form-control @error('nic') is-invalid @enderror" name="nic"
-                                        value="{{ __('123456') }}" required autocomplete="nic">
+                                        value="{{ __('152') }}" required autocomplete="nic">
 
                                     @error('nic')
                                         <span class="invalid-feedback" role="alert">
@@ -111,7 +110,7 @@
                                 <div class="col-md-6">
                                     <input id="address" type="text"
                                         class="form-control @error('address') is-invalid @enderror" name="address"
-                                        value="{{ __('123456') }}" required autocomplete="address">
+                                        value="{{ __('123456') }}"  autocomplete="address">
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -129,7 +128,7 @@
                                 <div class="col-md-6">
                                     <input id="phone" type="number"
                                         class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                        value="{{ __('123456') }}" required autocomplete="phone">
+                                        value="{{ __('123456') }}"  autocomplete="phone">
 
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
@@ -156,6 +155,7 @@
                                 </div>
                             </div>
 
+                                {{-- password --}}
                             <div class="row mb-3">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
@@ -173,6 +173,7 @@
                                 </div>
                             </div>
 
+                            {{-- password_confirmation --}}
                             <div class="row mb-3">
                                 <label for="password-confirm"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -25,3 +26,5 @@ Route::resource('books', BookController::class)->middleware('auth');
 Auth::routes();
 
 Route::get('/home', [BookController::class, 'index'])->name('home');
+
+Route::resource('users', UserController::class)->middleware('auth');

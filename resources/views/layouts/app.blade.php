@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,14 +17,17 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('logo.jpg')}}" alt="Logo de museion"  height="100">
+                    <img src="{{ asset('logo.jpg') }}" alt="Logo de museion" height="100">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -50,37 +54,44 @@
                                 </li>
                             @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                               Libros
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('books.index') }}">
-                                    {{ __('lista de libros') }}
-                                </a>
-                            </div>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('books.create') }}">
-                                    {{ __('Crear Libro') }}
-                                </a>
-                            </div>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                </a>
-                            </div>
-                        </li>
+                            {{-- books dropdown --}}
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Libros
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('books.index') }}">
+                                        {{ __('lista de libros') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('books.create') }}">
+                                        {{ __('Crear Libro') }}
+                                    </a>
+                                </div>
+
+
+                            </li>
+
+                            {{-- Users dropdown --}}
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                                  document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ route('users.index') }}">
+                                        {{ __('lista de usuarios') }}
+                                    </a>
+                                  
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -97,4 +108,5 @@
         </main>
     </div>
 </body>
+
 </html>
