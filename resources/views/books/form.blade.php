@@ -11,6 +11,15 @@
 
     @endforeach
 @endif
+
+@if (Session::has('alert'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+    <strong> {{ Session::get('alert') }}</strong>.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
     <div class="mb-3">
         <label for="title"form-label">Titulo</label>
         <input type="text" class="form-control" value="{{isset( $bookCase->title)?$bookCase->title:old('title')}}" name="title">
