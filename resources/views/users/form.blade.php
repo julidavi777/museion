@@ -1,6 +1,12 @@
 <div class="container pb-3 ">
     <h1>{{ $mode . ' ' . $action }} Usuario</h1>
+    @if (Session::has('alert'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
 
+        <strong> {{ Session::get('alert') }}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
     @if (count($errors) > 0)
         @foreach ($errors->all() as $error)
             <div class="alert alert-danger">
@@ -8,8 +14,7 @@
             </div>
         @endforeach
     @endif
-    {{isset( $bookCase->title)?$bookCase->title:old('title')}}
-    {{-- Nombre --}}
+    {{-- name --}}
     <div class="mb-3">
         <label for="name"form-label">Nombre</label>
         <input type="text" class="form-control" value="{{isset($endUser->name) ? $endUser->name : old('name') }}"
@@ -17,7 +22,7 @@
         </div>
 
 
-    {{-- apellido --}}
+    {{-- last name --}}
 
     <div class="mb-3">
         <label for="last_name"form-label">Apellido</label>
@@ -25,7 +30,7 @@
             value="{{ isset($endUser->last_name) ? $endUser->last_name : old('last_name') }}" name="last_name">
     </div>
 
-    {{-- tipo de documento --}}
+    {{-- type id --}}
     <div class="mb-3">
         <label for="type_id"form-label">Tipo de documento</label>
         <select class="form-select" aria-label="Default select example" name="type_id"
@@ -37,25 +42,16 @@
             <option value="pasaporte">pasaporte</option>
         </select>
 
-        @error('type_id')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
+        </div>
 
     {{-- nic --}}
     <div class="mb-3">
         <label for="nic"class="">Documento </label>
 
         <input id="nic" type="nic" class="form-control @error('nic') is-invalid @enderror" name="nic"
-            value="{{isset( $endUser->nic)?$endUser->nic:old('nic')}}" required autocomplete="nic">
+            value="{{isset( $endUser->nic)?$endUser->nic:old('nic')}}"  autocomplete="nic">
 
-        @error('nic')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+
     </div>
 
     {{-- birth --}}
@@ -63,30 +59,22 @@
         <label for="birth" class="">{{ __('Fecha de nacimiento:*') }}</label>
 
         <input id="birth" type="date" class="form-control @error('birth') is-invalid @enderror" name="birth"
-            value="{{isset( $endUser->birth)?$endUser->birth:old('birth')}} __('2022-12-01') }}" required autocomplete="birth">
+            value="{{isset( $endUser->birth)?$endUser->birth:old('birth')}}" required autocomplete="birth">
 
-        @error('birth')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+
     </div>
 
-    {{-- direccion --}}
+    {{-- address --}}
     <div class="mb-3">
         <label for="address" class="">{{ __('Dirección:') }}</label>
 
 
         <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address"
-             value="{{--{{isset( $endUser->address)?$endUser->address:old('address')}}--}} la concha" autocomplete="address">
+             value="{{isset( $endUser->address)?$endUser->address:old('address')}}" autocomplete="address">
 
-        @error('address')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+
     </div>
-          {{-- direccion de email --}}
+          {{-- email --}}
           <div class="mb-3">
             <label for="email"
                 class="">Correo electrónico</label>
@@ -94,7 +82,7 @@
             <div class="">
                 <input id="email" type="email"
                     class="form-control @error('email') is-invalid @enderror" name="email"
-                    value="{{isset( $endUser->email)?$endUser->email:old('email')}}" required autocomplete="email">
+                    value="{{isset( $endUser->email)?$endUser->email:old('email')}}"  autocomplete="email">
 
 
             </div>
@@ -105,17 +93,12 @@
 
         <div class="">
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                name="password" required autocomplete="new-password" value="123456789">
+                name="password" required autocomplete="new-password" value="">
 
-            @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
         </div>
     </div>
 
-   
+
 <button type="submit" class="btn btn-primary">{{$mode}} </button>
 <a class="btn btn-danger"  href="{{url('/users')}}">Regresar</a>
 </form>

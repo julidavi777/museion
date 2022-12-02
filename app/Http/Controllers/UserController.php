@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -18,8 +19,25 @@ class UserController extends Controller
         return view('users.index', compact('endUser'));
     }
 
+    public function create(){
+        return view('users.create');
+    }
 
+    public function store(Request $request){
+        $endUser = request()->except('_token');
+        $users = User::all();
+        $typeId = $request->type_id;
+        $nic = $request->nic;
+        $query= DB::table('users')->where('type_id','=', $typeId)->where('nic','=',$nic)->get()->count() > 0;
 
+        if (!$query) {
+        User::insert($endUser);
+        return redirect('users')->with('msg', 'Usuario añadido correctamente');
+        }else{
+             return redirect('users/create')->with('alert', 'Error! número y tipo de documento iguales');
+
+        }
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -55,9 +73,9 @@ class UserController extends Controller
         $error = [
             'name.required'=>'El Nombre es requerido, no debe contener mas de 80 caracteres',
             'last_name.required'=>'El Apellido es requerido, no debe ser mayor a 80 caracteres',
-            'nic.required'=>'El ISBN es requerido, no  puede estar duplicado',
+            'nic.required'=>'El número de indentidad  es requerido y no  puede estar duplicado',
             'birht.required'=>'Por favor ingrese una fecha valida',
-            'email.required'=>'Email invalido o registrado',
+            'email.required'=>'Email invalido ',
         ];
 
         $this->validate($request, $formFields,$error);
@@ -77,6 +95,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+            User::destroy($id);
+
+        return redirect('users')->with('msg', 'El usuario se ha borrado exitosamente' );
     }
 }

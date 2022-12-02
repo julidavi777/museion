@@ -21,18 +21,21 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
     protected function validator(array $data)
     {
-        return Validator::make($data, [
 
-            'name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'type_id' => ['required'],
-            'nic' => ['required'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-        // if(User::where('type_id', $data)){
+
+            return Validator::make($data, [
+
+                'name' => ['required', 'string', 'max:255'],
+                'last_name' => ['required', 'string', 'max:255'],
+                'type_id' => ['required'],
+                'nic' => ['required'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+        
     }
 
 
@@ -53,7 +56,7 @@ class RegisterController extends Controller
             ->get();
 
 
-        if($users){
+        if ($users) {
 
 
             return User::create([
@@ -69,6 +72,5 @@ class RegisterController extends Controller
             ]);
         }
         return view('test');
-
     }
 }
